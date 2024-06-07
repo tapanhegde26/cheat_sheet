@@ -38,7 +38,7 @@ Set default namesapce
 ```
 kubectl config set-context $(kubectl config current-context) --namespace=my-namespace
 ```
-To switch between contexts, you can also install and use [https://github.com/ahmetb/kubectx].
+To switch between contexts, you can also install and use kubectx(https://github.com/ahmetb/kubectx).
 
 ## 4. Get Commands
 ```
@@ -70,4 +70,4 @@ To list all pods in all namespaces
 ```
 kubectl get pods --all-namespaces
 ```
-To switch namespaces, you can also install and use [https://github.com/ahmetb/kubectx/blob/master/kubens].
+To switch namespaces, you can also install and use kubens(https://github.com/ahmetb/kubectx/blob/master/kubens).
