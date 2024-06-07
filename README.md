@@ -72,7 +72,7 @@ kubectl get pods --all-namespaces
 ```
 To switch namespaces, you can also install and use [kubens](https://github.com/ahmetb/kubectx/blob/master/kubens).
 
-## Uses of kubectl-run command
+## 6. Uses of kubectl-run command
 Create an NGINX Pod
 ```
 kubectl run nginx --image=nginx
