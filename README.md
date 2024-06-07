@@ -55,3 +55,19 @@ Additional switches that can be added to the above commands:
 
 * `-o wide` - Show more information.
 * `--watch` or `-w` `- watch` for changes.
+
+## 5. Namespaces
+To list all pods in a namespace
+```
+kubectl get po -n <namespace_name>
+Eg : kubectl get po -n dev
+```
+Get current context and set namespace as a default for context
+```
+kubectl config set-context $(kubectl config current-context) -n dev
+```
+To list all pods in all namespaces
+```
+kubectl get pods --all-namespaces
+```
+To switch namespaces, you can also install and use [https://github.com/ahmetb/kubectx/blob/master/kubens].
