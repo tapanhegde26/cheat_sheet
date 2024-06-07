@@ -105,3 +105,15 @@ In k8s version 1.19+, we can specify the --replicas option to create a deploymen
 ```
 kubectl create deployment --image=nginx nginx --replicas=4 --dry-run=client -o yaml > nginx-deployment.yaml
 ```
+## 7. Examples of kubectl (Imperative) command
+```
+kubectl run --image=nginx nginx
+kubectl create deployment --image=nginx nginx
+kubectl expose deployment nginx --port 80
+kubectl edit deployment nginx
+kubectl scale deployment nginx --replicas=5
+kubectl set image deployment nginx nginx=nginx:1.18
+kubectl create -f ngnix.yml
+kubectl replace -f nginx.yml
+kubectl delete -f ngnix.yml
+```
