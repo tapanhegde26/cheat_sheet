@@ -99,12 +99,6 @@ Generate Deployment YAML file (-o yaml). Don’t create it(–dry-run) and save 
 kubectl create deployment --image=nginx nginx --dry-run=client -o yaml > nginx-deployment.yaml
 ```
 
-Make necessary changes to the file (for example, adding more replicas) and then create the deployment.
-
-kubectl create -f nginx-deployment.yaml
-
-
-
 OR
 
 In k8s version 1.19+, we can specify the --replicas option to create a deployment with 4 replicas.
