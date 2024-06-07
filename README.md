@@ -1,7 +1,7 @@
 # kubernetes_cheat_sheet
 cheat sheet for kubectl commands
 
-## Kubectl Alias
+## 1. Kubectl Alias
 Linux
 ```
 alias k=kubectl
@@ -10,7 +10,7 @@ Windows
 ```
 Set-Alias -Name k -Value kubectl
 ```
-## Cluster Info
+## 2. Cluster Info
 Get clusters
 ```
 kubectl config get-clusters
@@ -19,7 +19,7 @@ Get cluster info.
 ```
 kubectl cluster-info
 ```
-## Contexts
+## 3. Contexts
 A context is a cluster, namespace and user.
 
 Get a list of contexts.
@@ -40,7 +40,7 @@ kubectl config set-context $(kubectl config current-context) --namespace=my-name
 ```
 To switch between contexts, you can also install and use [https://github.com/ahmetb/kubectx].
 
-## Get Commands
+## 4. Get Commands
 ```
 kubectl get all
 kubectl get namespaces
