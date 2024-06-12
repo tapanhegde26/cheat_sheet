@@ -1,6 +1,9 @@
 # kubernetes_cheat_sheet
 cheat sheet for kubectl commands
 
+# Awesome Reference 
+[the-guide-to-kubectl-i-never-had](https://medium.com/@jake.page91/the-guide-to-kubectl-i-never-had-3874cc6074ff)
+
 ## 1. Kubectl Alias
 Linux
 ```
