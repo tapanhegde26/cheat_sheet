@@ -18,3 +18,20 @@ export ETCDCTL_API=3
 etcdctl --write-out=table snapshot status /opt/cluster_backup.db 
 etcdctl --data-dir /root/default.etcd snapshot restore /opt/cluster_backup.db &> restore.txt
 ```
+# Secret - decode
+
+## Question
+For this question, please set this context (In exam, diff cluster name)
+
+`kubectl config use-context kubernetes-admin@kubernetes`
+
+
+Decode the contents of the existing secret named `database-data` in the `database-ns` namespace and save the decoded content into a file located at `decoded.txt`
+
+## Answer
+```
+kubectl config use-context kubernetes-admin@kubernetes
+kubectl get secrets -n database-ns
+kubectl get secrets -n database-ns -o yaml
+echo '<value of data obtained from yaml>' | base64 --decode > decoded.txt
+```
