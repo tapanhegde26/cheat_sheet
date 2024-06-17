@@ -49,3 +49,34 @@ kubectl create secret generic database-app-secret --from-file=database-data.txt
 kubectl get secret 
 kubectl get secret database-app-secret -o yaml
 ```
+
+# 3. Architecture/Installation and Maintenance
+
+## Question - 01
+For this question, please set this context (In exam, diff cluster name)
+
+`kubectl config use-context kubernetes-admin@kubernetes`
+
+
+you have a script named `svc-filter.sh` . Update this script to include a command that filters and displays the value of target port of a service named `redis-service` using jsonpath only.
+
+It should be in the format `kubectl get svc` OR It should be in the format `kubectl get service`
+
+## Answer
+```
+kubectl get svc
+```
+svc-filter.sh script contents
+```
+#!/bin/bash
+
+# Existing content of svc-filter.sh
+
+# Add the command to filter and display the target port of redis-service
+TARGET_PORT=$(kubectl get svc redis-service -o jsonpath='{.spec.ports[0].targetPort}')
+echo "The target port of redis-service is: $TARGET_PORT"
+```
+```
+chmod +x svc-filter.sh 
+./svc-filter.sh
+```
