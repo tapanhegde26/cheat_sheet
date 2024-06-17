@@ -1,4 +1,4 @@
-# ETCD - backup and restore
+# 1.ETCD - backup and restore
 
 ## Question
 For this question, please set this context (In exam, diff cluster name)
@@ -18,7 +18,7 @@ export ETCDCTL_API=3
 etcdctl --write-out=table snapshot status /opt/cluster_backup.db 
 etcdctl --data-dir /root/default.etcd snapshot restore /opt/cluster_backup.db &> restore.txt
 ```
-# Secrets
+# 2.Secrets
 
 ## Question - 01
 For this question, please set this context (In exam, diff cluster name)
