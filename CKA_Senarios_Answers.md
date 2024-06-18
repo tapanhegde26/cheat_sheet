@@ -168,3 +168,11 @@ rules:
 ```
 kubectl apply -f updated-cluster-role.yaml
 ```
+# 5. Pod resource
+
+## Question - 01
+Find the pod that consumes the most CPU in all namespace(including kube-system) in all cluster(currently we have single cluster). Then, store the result in the file `high_cpu_pod.txt` with the following format: pod_name,namespace .
+## Answer
+```
+kubectl top pods --all-namespaces --sort-by=cpu | awk 'NR==2 {print $2","$1}' > high_cpu_pod.txt
+```
