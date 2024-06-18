@@ -132,3 +132,39 @@ kubectl apply -f service-account.yaml
 kubectl apply -f cluster-role.yaml
 kubectl apply -f cluster-role-binding.yaml
 ```
+## Question - 2
+For this question, please set this context (In exam, diff cluster name)
+
+`kubectl config use-context kubernetes-admin@kubernetes`
+
+
+You have a service account named `group1-sa` , a ClusterRole named `group1-role-cka` , and a ClusterRoleBinding named `group1-role-binding-cka` . Your task is to update the permissions for the `group1-sa` service account so that it can only create , get and list the deployments and no other resources in the cluster.
+
+## Answer
+* Check all service-accounts to see if group1-sa is present
+  ```
+  kubectl get sa
+  ```
+* check all cluster-role to see if group1-role-cka is present
+  ```
+  kubectl get clusterrole
+  ```
+* check all cluster-role-binding to see if group1-role-binding-cka is present
+  ```
+  kubectl get clusterrolebinding
+  ```
+* Next update cluster-role as below and save it in separate yaml file (updated-cluster-role.yaml)
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: group1-role-cka
+rules:
+- apiGroups: ["apps"]
+  resources: ["deployments"]
+  verbs: ["create", "get", "list"]
+```
+* apply updated-cluster-role.yaml file to update changes
+```
+kubectl apply -f updated-cluster-role.yaml
+```
