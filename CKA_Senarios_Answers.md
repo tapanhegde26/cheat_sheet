@@ -176,3 +176,7 @@ Find the pod that consumes the most CPU in all namespace(including kube-system) 
 ```
 kubectl top pods --all-namespaces --sort-by=cpu | awk 'NR==2 {print $2","$1}' > high_cpu_pod.txt
 ```
+To get details of node which is consuming more resources
+```
+echo "$(kubectl config current-context),$(kubectl top nodes --no-headers | sort -nrk 3 | head -n 1 | awk '{print $1}')" > high_memory_node.txt
+```
