@@ -180,3 +180,41 @@ To get details of node which is consuming more resources
 ```
 echo "$(kubectl config current-context),$(kubectl top nodes --no-headers | sort -nrk 3 | head -n 1 | awk '{print $1}')" > high_memory_node.txt
 ```
+
+# 6. Service and Networking
+
+## Question - 01
+For this question, please set this context (In exam, diff cluster name)
+
+`kubectl config use-context kubernetes-admin@kubernetes`
+
+
+You have an existing Nginx pod named `nginx-pod` . Perform the following steps:
+
+Expose the `nginx-pod` internally within the cluster using a Service named `nginx-service` .
+Use port forwarding to service to access the Welcome content of `nginx-pod` using the curl command.
+
+## Answer
+* Create service named nginx-service.yaml
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx-pod
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+```
+command : 
+```
+kubectl apply -f nginx-service.yaml
+```
+* use port forwarding to access the pod directly.
+```
+kubectl port-forward pod/nginx-pod 8080:80
+```
+
