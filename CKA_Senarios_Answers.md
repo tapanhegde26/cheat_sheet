@@ -80,3 +80,55 @@ echo "The target port of redis-service is: $TARGET_PORT"
 chmod +x svc-filter.sh 
 ./svc-filter.sh
 ```
+# 4. RBAC Authorization
+
+## Question - 1
+For this question, please set this context (In exam, diff cluster name)
+
+`kubectl config use-context kubernetes-admin@kubernetes`
+
+
+Create a service account named `app-account` , a cluster role named `app-role-cka` , and a cluster role binding named `app-role-binding-cka` . Update the permissions of this service account so that it can get the pods only in the default namespace.
+
+## Answer
+* Create service-account yaml file
+```
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: app-account
+  namespace: default
+```
+* Create cluster-role.yaml file
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: app-role-cka
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get"]
+```
+* Create cluster-role-binding.yaml file
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: app-role-binding-cka
+subjects:
+- kind: ServiceAccount
+  name: app-account
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: app-role-cka
+  apiGroup: rbac.authorization.k8s.io
+
+```
+apply these changes
+```
+kubectl apply -f service-account.yaml
+kubectl apply -f cluster-role.yaml
+kubectl apply -f cluster-role-binding.yaml
+```
