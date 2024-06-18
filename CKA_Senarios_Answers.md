@@ -28,6 +28,7 @@ For this question, please set this context (In exam, diff cluster name)
 
 Decode the contents of the existing secret named `database-data` in the `database-ns` namespace and save the decoded content into a file located at `decoded.txt`
 
+
 ## Answer
 ```
 kubectl config use-context kubernetes-admin@kubernetes
@@ -218,3 +219,42 @@ kubectl apply -f nginx-service.yaml
 kubectl port-forward pod/nginx-pod 8080:80
 ```
 
+## Question - 02
+For this question, please set this context (In exam, diff cluster name)
+
+`kubectl config use-context kubernetes-admin@kubernetes`
+
+
+Part I:
+
+Create a Kubernetes ClusterIP service named `nginx-service` . This service should expose to `nginx-deployment` , using port 8080 and target port 80
+Part II:
+
+Retrieve and store the IP addresses of the pods. Sort the output by their IP addresses in Ascending order and save it to the file pod_ips.txt in the following format:
+`IP_ADDRESS
+127.0.0.1
+127.0.0.2
+127.0.0.3`
+
+## Answer
+* Create nginx-service.yaml
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80
+```
+```
+kubectl apply -f nginx-service.yaml
+```
+* Retrieve and store the IP addresses of the pods. Sort the output by their IP addresses in Ascending order and save it to the file pod_ips.txt
+```
+kubectl get pods -o wide --no-headers | awk '{print $6}' | tr " " "\n" | sort -n > pod_ips.txt
+```
